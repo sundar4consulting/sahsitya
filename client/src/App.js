@@ -9,6 +9,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState('home');
 
   const fetchData = useCallback(async () => {
     try {
@@ -74,22 +75,63 @@ function App() {
 
   return (
     <div className="app">
-      <Header completed={completedCount} total={totalCount} />
-      <div className="main-content">
-        {categories.map((cat) => (
-          <CategoryBoard
-            key={cat._id}
-            category={cat}
-            tasks={tasks.filter((t) => t.category?._id === cat._id)}
-            onAddTask={handleAddTask}
-            onUpdateTask={handleUpdateTask}
-            onDeleteTask={handleDeleteTask}
-            onDeleteCategory={handleDeleteCategory}
-            onUpdateCategory={handleUpdateCategory}
-          />
-        ))}
-        <AddCategoryForm onAdd={handleAddCategory} />
-      </div>
+      <Header completed={completedCount} total={totalCount} page={page} onNavigate={setPage} />
+
+      {page === 'home' && (
+        <div className="home-page">
+          <div className="welcome-card">
+            <div className="welcome-icon">🎊</div>
+            <h2>60th Marriage Function</h2>
+            <div className="couple-names">
+              <div className="couple-person">
+                <span className="couple-role">Bride</span>
+                <span className="couple-name">K. Kothai</span>
+              </div>
+              <div className="couple-divider">💞</div>
+              <div className="couple-person">
+                <span className="couple-role">Bridegroom</span>
+                <span className="couple-name">R. Kannan</span>
+              </div>
+            </div>
+            <p>Plan, track and manage all tasks for the celebration in one place.</p>
+            <div className="welcome-stats">
+              <div className="stat-box">
+                <span className="stat-number">{categories.length}</span>
+                <span className="stat-label">Categories</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-number">{totalCount}</span>
+                <span className="stat-label">Total Tasks</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-number">{completedCount}</span>
+                <span className="stat-label">Completed</span>
+              </div>
+            </div>
+            <button className="go-tasks-btn" onClick={() => setPage('tasks')}>
+              View All Tasks →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {page === 'tasks' && (
+        <div className="main-content">
+          {categories.map((cat) => (
+            <CategoryBoard
+              key={cat._id}
+              category={cat}
+              tasks={tasks.filter((t) => t.category?._id === cat._id)}
+              onAddTask={handleAddTask}
+              onUpdateTask={handleUpdateTask}
+              onDeleteTask={handleDeleteTask}
+              onDeleteCategory={handleDeleteCategory}
+              onUpdateCategory={handleUpdateCategory}
+            />
+          ))}
+          <AddCategoryForm onAdd={handleAddCategory} />
+        </div>
+      )}
     </div>
   );
 }
