@@ -27,10 +27,10 @@ function EditTaskModal({ task, onSave, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h3>Edit Task</h3>
+        <h3>Edit Item</h3>
         <form onSubmit={handleSubmit}>
           <div className="modal-field">
-            <label>Task Name</label>
+            <label>Item Name</label>
             <input
               name="name"
               value={form.name}
