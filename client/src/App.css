@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1a0505 0%, #59100d 45%, #8b2000 75%, #c4511a 100%);
+  background: linear-gradient(135deg, #050d1a 0%, #0a2463 40%, #1b6ca8 75%, #00b4d8 100%);
   min-height: 100vh;
   color: #333;
 }
@@ -88,7 +88,7 @@ body {
 
 .progress-bar {
   height: 100%;
-  background: #f0c040;
+  background: #00f0ff;
   border-radius: 4px;
   transition: width 0.5s ease;
 }
@@ -123,7 +123,7 @@ body {
 
 .nav-btn.active {
   background: white;
-  color: #8b0000;
+  color: #0077b6;
   font-weight: 700;
 }
 
@@ -144,7 +144,7 @@ body {
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
   max-width: 580px;
   width: 100%;
-  border: 3px solid #e8b84b;
+  border: 3px solid #00b4d8;
 }
 
 .welcome-icon {
@@ -155,7 +155,7 @@ body {
 .welcome-card h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: #8b0000;
+  color: #0077b6;
   margin-bottom: 0.5rem;
 }
 
@@ -167,7 +167,7 @@ body {
 
 .welcome-subtitle {
   font-size: 0.8rem;
-  color: #c41e3a;
+  color: #0096c7;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 600;
@@ -175,14 +175,14 @@ body {
 }
 
 .welcome-tagline {
-  color: #6b4226;
+  color: #1b5e8a;
   font-size: 0.95rem;
   font-style: italic;
   margin: 0.25rem 0 0.75rem !important;
 }
 
 .welcome-divider-line {
-  color: #e8b84b;
+  color: #00b4d8;
   font-size: 1.1rem;
   letter-spacing: 0.5rem;
   margin-bottom: 1.5rem;
@@ -214,7 +214,7 @@ body {
 .couple-name {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #8b0000;
+  color: #0077b6;
 }
 
 .couple-divider {
@@ -241,7 +241,7 @@ body {
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  color: #c41e3a;
+  color: #0077b6;
 }
 
 .stat-label {
@@ -252,7 +252,7 @@ body {
 }
 
 .go-tasks-btn {
-  background: linear-gradient(135deg, #8b0000, #c41e3a);
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
   color: white;
   border: none;
   padding: 0.75rem 2rem;
@@ -308,7 +308,7 @@ body {
 }
 
 .category-header {
-  background: linear-gradient(135deg, #8b0000, #c41e3a);
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
   color: white;
   padding: 1rem 1.5rem;
   display: flex;
@@ -456,8 +456,8 @@ body {
 }
 
 .inline-edit:focus {
-  border-color: #c41e3a;
-  box-shadow: 0 0 0 2px rgba(196, 30, 58, 0.15);
+  border-color: #0077b6;
+  box-shadow: 0 0 0 2px rgba(0, 119, 182, 0.15);
 }
 
 .inline-select {
@@ -472,7 +472,7 @@ body {
 }
 
 .inline-select:focus {
-  border-color: #c41e3a;
+  border-color: #0077b6;
 }
 
 /* Task Actions */
@@ -518,12 +518,12 @@ body {
 }
 
 .add-task-input:focus {
-  border-color: #c41e3a;
+  border-color: #0077b6;
   color: #1f2937;
 }
 
 .add-task-btn {
-  background: #8b0000;
+  background: #0077b6;
   color: white;
   border: none;
   border-radius: 8px;
@@ -537,7 +537,7 @@ body {
 }
 
 .add-task-btn:hover {
-  background: #6b0000;
+  background: #005f92;
 }
 
 /* Add Category */
