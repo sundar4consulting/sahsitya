@@ -15,7 +15,7 @@ function AddCategoryForm({ onAdd }) {
   if (!isOpen) {
     return (
       <div className="add-category-card" onClick={() => setIsOpen(true)}>
-        ➕ Add New Category
+        ✨ Add Arrangement
       </div>
     );
   }
@@ -24,7 +24,7 @@ function AddCategoryForm({ onAdd }) {
     <form className="add-category-form" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Category name..."
+        placeholder="Arrangement name..."
         value={name}
         onChange={(e) => setName(e.target.value)}
         autoFocus

@@ -6,8 +6,8 @@ function Header({ completed, total, page, onNavigate }) {
   return (
     <header className="header">
       <div className="header-title">
-        <span className="icon">🎉</span>
-        <h1>60 Function - Task Manager</h1>
+        <span className="icon">🪔</span>
+        <h1>Kothai &amp; Kannan — Shashtipurti</h1>
       </div>
       <nav className="header-nav">
         <button
@@ -20,7 +20,7 @@ function Header({ completed, total, page, onNavigate }) {
           className={`nav-btn${page === 'tasks' ? ' active' : ''}`}
           onClick={() => onNavigate('tasks')}
         >
-          📋 Tasks
+          📋 Arrangements
         </button>
       </nav>
       <div className="header-stats">

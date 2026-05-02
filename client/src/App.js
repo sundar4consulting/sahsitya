@@ -68,7 +68,7 @@ function App() {
     return (
       <div className="loading-screen">
         <div className="spinner"></div>
-        <p>Loading 60 Function...</p>
+        <p>Preparing the celebration...</p>
       </div>
     );
   }
@@ -80,8 +80,9 @@ function App() {
       {page === 'home' && (
         <div className="home-page">
           <div className="welcome-card">
-            <div className="welcome-icon">🎊</div>
-            <h2>60th Marriage Function</h2>
+            <div className="welcome-icon">🪔</div>
+            <p className="welcome-subtitle">We Joyfully Celebrate</p>
+            <h2>Shashtipurti Mahotsav</h2>
             <div className="couple-names">
               <div className="couple-person">
                 <span className="couple-role">Bride</span>
@@ -93,15 +94,18 @@ function App() {
                 <span className="couple-name">R. Kannan</span>
               </div>
             </div>
-            <p>Plan, track and manage all tasks for the celebration in one place.</p>
+            <p className="welcome-tagline">
+              60 beautiful years of love, devotion &amp; togetherness
+            </p>
+            <div className="welcome-divider-line">✦ &nbsp; ✦ &nbsp; ✦</div>
             <div className="welcome-stats">
               <div className="stat-box">
                 <span className="stat-number">{categories.length}</span>
-                <span className="stat-label">Categories</span>
+                <span className="stat-label">Arrangements</span>
               </div>
               <div className="stat-box">
                 <span className="stat-number">{totalCount}</span>
-                <span className="stat-label">Total Tasks</span>
+                <span className="stat-label">Total Items</span>
               </div>
               <div className="stat-box">
                 <span className="stat-number">{completedCount}</span>
@@ -109,7 +113,7 @@ function App() {
               </div>
             </div>
             <button className="go-tasks-btn" onClick={() => setPage('tasks')}>
-              View All Tasks →
+              View Arrangements →
             </button>
           </div>
         </div>
@@ -117,6 +121,10 @@ function App() {
 
       {page === 'tasks' && (
         <div className="main-content">
+          <div className="arrangements-header">
+            <h2>🎊 Event Arrangements</h2>
+            <p>Manage all celebration preparations below</p>
+          </div>
           {categories.map((cat) => (
             <CategoryBoard
               key={cat._id}

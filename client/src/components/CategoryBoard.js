@@ -69,7 +69,7 @@ function CategoryBoard({
           <button onClick={() => setIsEditingName(true)} title="Rename">✏️</button>
           <button
             onClick={() => {
-              if (window.confirm(`Delete "${category.name}" and all its tasks?`)) {
+              if (window.confirm(`Delete "${category.name}" and all its items?`)) {
                 onDeleteCategory(category._id);
               }
             }}
@@ -85,8 +85,8 @@ function CategoryBoard({
           <table className="task-table">
             <thead>
               <tr>
-                <th style={{ width: '40%' }}>Task Name</th>
-                <th style={{ width: '15%' }}>Assignee</th>
+                <th style={{ width: '40%' }}>Item</th>
+                <th style={{ width: '15%' }}>Person</th>
                 <th style={{ width: '15%' }}>Due Date</th>
                 <th style={{ width: '10%' }}>Priority</th>
                 <th style={{ width: '12%' }}>Status</th>
@@ -112,7 +112,7 @@ function CategoryBoard({
           <input
             className="add-task-input"
             type="text"
-            placeholder="+ Add task..."
+            placeholder="+ Add item..."
             value={newTaskName}
             onChange={(e) => setNewTaskName(e.target.value)}
           />
