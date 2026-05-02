@@ -20,7 +20,9 @@ function TaskRow({ task, onStatusCycle, onPriorityCycle, onEdit, onDelete }) {
             {task.name}
           </span>
           {task.notes && (
-            <span className="notes-icon" title={task.notes}>💬</span>
+            <div className="notes-inline" title={task.notes}>
+              📝 {task.notes.length > 60 ? task.notes.slice(0, 60) + '…' : task.notes}
+            </div>
           )}
         </td>
         <td style={{ color: task.assignee ? '#1f2937' : '#d1d5db' }}>
@@ -54,13 +56,6 @@ function TaskRow({ task, onStatusCycle, onPriorityCycle, onEdit, onDelete }) {
           </div>
         </td>
       </tr>
-      {task.notes && (
-        <tr className="notes-row">
-          <td colSpan={6}>
-            <span className="notes-text">📝 {task.notes}</span>
-          </td>
-        </tr>
-      )}
     </>
   );
 }
