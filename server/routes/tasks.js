@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const updates = {};
-    const allowed = ['name', 'assignee', 'dueDate', 'priority', 'status', 'category'];
+    const allowed = ['name', 'assignee', 'notes', 'dueDate', 'priority', 'status', 'category'];
     allowed.forEach((field) => {
       if (req.body[field] !== undefined) updates[field] = req.body[field];
     });
