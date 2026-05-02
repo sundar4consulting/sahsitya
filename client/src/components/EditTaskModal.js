@@ -4,6 +4,7 @@ function EditTaskModal({ task, onSave, onClose }) {
   const [form, setForm] = useState({
     name: task.name,
     assignee: task.assignee || '',
+    notes: task.notes || '',
     dueDate: task.dueDate ? task.dueDate.slice(0, 10) : '',
     priority: task.priority || '',
     status: task.status
@@ -18,6 +19,7 @@ function EditTaskModal({ task, onSave, onClose }) {
     onSave({
       name: form.name,
       assignee: form.assignee,
+      notes: form.notes,
       dueDate: form.dueDate || null,
       priority: form.priority,
       status: form.status
@@ -45,6 +47,16 @@ function EditTaskModal({ task, onSave, onClose }) {
               value={form.assignee}
               onChange={handleChange}
               placeholder="Assign to..."
+            />
+          </div>
+          <div className="modal-field">
+            <label>Notes</label>
+            <textarea
+              name="notes"
+              value={form.notes}
+              onChange={handleChange}
+              placeholder="Add any notes or remarks..."
+              rows={3}
             />
           </div>
           <div className="modal-field">

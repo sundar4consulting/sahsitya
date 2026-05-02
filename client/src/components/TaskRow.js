@@ -13,43 +13,55 @@ function TaskRow({ task, onStatusCycle, onPriorityCycle, onEdit, onDelete }) {
   };
 
   return (
-    <tr>
-      <td>
-        <span className={`task-name ${task.status === 'Done' ? 'done' : ''}`}>
-          {task.name}
-        </span>
-      </td>
-      <td style={{ color: task.assignee ? '#1f2937' : '#d1d5db' }}>
-        {task.assignee || '—'}
-      </td>
-      <td style={{ color: task.dueDate ? '#1f2937' : '#d1d5db' }}>
-        {formatDate(task.dueDate)}
-      </td>
-      <td>
-        <span
-          className={`priority-badge ${priorityClass}`}
-          onClick={() => onPriorityCycle(task)}
-          title="Click to change priority"
-        >
-          {task.priority || '—'}
-        </span>
-      </td>
-      <td>
-        <span
-          className={`status-badge ${statusClass}`}
-          onClick={() => onStatusCycle(task)}
-          title="Click to change status"
-        >
-          {task.status}
-        </span>
-      </td>
-      <td>
-        <div className="task-actions">
-          <button onClick={onEdit} title="Edit">✏️</button>
-          <button onClick={onDelete} title="Delete">🗑️</button>
-        </div>
-      </td>
-    </tr>
+    <>
+      <tr>
+        <td>
+          <span className={`task-name ${task.status === 'Done' ? 'done' : ''}`}>
+            {task.name}
+          </span>
+          {task.notes && (
+            <span className="notes-icon" title={task.notes}>💬</span>
+          )}
+        </td>
+        <td style={{ color: task.assignee ? '#1f2937' : '#d1d5db' }}>
+          {task.assignee || '—'}
+        </td>
+        <td style={{ color: task.dueDate ? '#1f2937' : '#d1d5db' }}>
+          {formatDate(task.dueDate)}
+        </td>
+        <td>
+          <span
+            className={`priority-badge ${priorityClass}`}
+            onClick={() => onPriorityCycle(task)}
+            title="Click to change priority"
+          >
+            {task.priority || '—'}
+          </span>
+        </td>
+        <td>
+          <span
+            className={`status-badge ${statusClass}`}
+            onClick={() => onStatusCycle(task)}
+            title="Click to change status"
+          >
+            {task.status}
+          </span>
+        </td>
+        <td>
+          <div className="task-actions">
+            <button onClick={onEdit} title="Edit">✏️</button>
+            <button onClick={onDelete} title="Delete">🗑️</button>
+          </div>
+        </td>
+      </tr>
+      {task.notes && (
+        <tr className="notes-row">
+          <td colSpan={6}>
+            <span className="notes-text">📝 {task.notes}</span>
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 
