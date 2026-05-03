@@ -1,6 +1,7 @@
 import React from 'react';
 
-function TaskRow({ task, onStatusCycle, onPriorityCycle, onEdit, onDelete }) {
+function TaskRow({ task, onStatusCycle, onPriorityCycle, onEdit, onDelete,
+  isDragging, isDragOver, onDragStart, onDragOver, onDrop, onDragEnd }) {
   const statusClass = task.status.toLowerCase().replace(' ', '-');
   const priorityClass = task.priority ? task.priority.toLowerCase() : 'none';
 
@@ -12,9 +13,22 @@ function TaskRow({ task, onStatusCycle, onPriorityCycle, onEdit, onDelete }) {
     });
   };
 
+  const rowClass = [
+    isDragging ? 'row-dragging' : '',
+    isDragOver ? 'row-drag-over' : ''
+  ].filter(Boolean).join(' ');
+
   return (
     <>
-      <tr>
+      <tr
+        className={rowClass}
+        draggable
+        onDragStart={onDragStart}
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+        onDragEnd={onDragEnd}
+      >
+        <td className="drag-handle" title="Drag to reorder">⠿</td>
         <td>
           <span className={`task-name ${task.status === 'Done' ? 'done' : ''}`}>
             {task.name}

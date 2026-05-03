@@ -18,3 +18,4 @@ export const getTasks = (categoryId) => {
 export const createTask = (data) => api.post('/tasks', data);
 export const updateTask = (id, data) => api.put(`/tasks/${id}`, data);
 export const deleteTask = (id) => api.delete(`/tasks/${id}`);
+export const reorderTasks = (ids) => api.put('/tasks/reorder', { ids });

@@ -9,14 +9,33 @@ function CategoryBoard({
   onUpdateTask,
   onDeleteTask,
   onDeleteCategory,
-  onUpdateCategory
+  onUpdateCategory,
+  onReorderTasks
 }) {
   const [newTaskName, setNewTaskName] = useState('');
   const [editingTask, setEditingTask] = useState(null);
   const [isEditingName, setIsEditingName] = useState(false);
   const [catName, setCatName] = useState(category.name);
+  const [draggedId, setDraggedId] = useState(null);
+  const [dragOverId, setDragOverId] = useState(null);
 
-  const doneCount = tasks.filter((t) => t.status === 'Done').length;
+  const orderedTasks = [...tasks].sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+  const doneCount = orderedTasks.filter((t) => t.status === 'Done').length;
+
+  const handleDragStart = (id) => setDraggedId(id);
+  const handleDragOver = (e, id) => { e.preventDefault(); setDragOverId(id); };
+  const handleDragEnd = () => { setDraggedId(null); setDragOverId(null); };
+  const handleDrop = (e, dropId) => {
+    e.preventDefault();
+    if (!draggedId || draggedId === dropId) { handleDragEnd(); return; }
+    const ids = orderedTasks.map(t => t._id);
+    const fromIdx = ids.indexOf(draggedId);
+    const toIdx = ids.indexOf(dropId);
+    ids.splice(fromIdx, 1);
+    ids.splice(toIdx, 0, draggedId);
+    onReorderTasks(ids);
+    handleDragEnd();
+  };
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -81,11 +100,12 @@ function CategoryBoard({
       </div>
 
       <div className="category-body">
-        {tasks.length > 0 && (
+        {orderedTasks.length > 0 && (
           <table className="task-table">
             <thead>
               <tr>
-                <th style={{ width: '40%' }}>Item</th>
+                <th style={{ width: '3%' }}></th>
+                <th style={{ width: '37%' }}>Item</th>
                 <th style={{ width: '15%' }}>Person</th>
                 <th style={{ width: '15%' }}>Due Date</th>
                 <th style={{ width: '10%' }}>Priority</th>
@@ -94,7 +114,7 @@ function CategoryBoard({
               </tr>
             </thead>
             <tbody>
-              {tasks.map((task) => (
+              {orderedTasks.map((task) => (
                 <TaskRow
                   key={task._id}
                   task={task}
@@ -102,6 +122,12 @@ function CategoryBoard({
                   onPriorityCycle={handlePriorityCycle}
                   onEdit={() => setEditingTask(task)}
                   onDelete={() => onDeleteTask(task._id)}
+                  isDragging={draggedId === task._id}
+                  isDragOver={dragOverId === task._id}
+                  onDragStart={() => handleDragStart(task._id)}
+                  onDragOver={(e) => handleDragOver(e, task._id)}
+                  onDrop={(e) => handleDrop(e, task._id)}
+                  onDragEnd={handleDragEnd}
                 />
               ))}
             </tbody>

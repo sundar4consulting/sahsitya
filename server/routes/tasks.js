@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   try {
     const filter = {};
     if (req.query.category) filter.category = req.query.category;
-    const tasks = await Task.find(filter).populate('category').sort({ createdAt: 1 });
+    const tasks = await Task.find(filter).populate('category').sort({ sortOrder: 1, createdAt: 1 });
     res.json(tasks);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -33,11 +33,24 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Reorder tasks (must be before /:id route)
+router.put('/reorder', async (req, res) => {
+  try {
+    const { ids } = req.body;
+    await Promise.all(ids.map((id, idx) =>
+      Task.findByIdAndUpdate(id, { sortOrder: idx })
+    ));
+    res.json({ success: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 // Update task
 router.put('/:id', async (req, res) => {
   try {
     const updates = {};
-    const allowed = ['name', 'assignee', 'notes', 'dueDate', 'priority', 'status', 'category'];
+    const allowed = ['name', 'assignee', 'notes', 'dueDate', 'priority', 'status', 'category', 'sortOrder'];
     allowed.forEach((field) => {
       if (req.body[field] !== undefined) updates[field] = req.body[field];
     });

@@ -61,6 +61,14 @@ function App() {
     setTasks(tasks.filter((t) => t._id !== id));
   };
 
+  const handleReorderTasks = async (orderedIds) => {
+    await api.reorderTasks(orderedIds);
+    setTasks(prev => prev.map(t => {
+      const idx = orderedIds.indexOf(t._id);
+      return idx !== -1 ? { ...t, sortOrder: idx } : t;
+    }));
+  };
+
   const completedCount = tasks.filter((t) => t.status === 'Done').length;
   const totalCount = tasks.length;
 
@@ -135,6 +143,7 @@ function App() {
               onDeleteTask={handleDeleteTask}
               onDeleteCategory={handleDeleteCategory}
               onUpdateCategory={handleUpdateCategory}
+              onReorderTasks={handleReorderTasks}
             />
           ))}
           <AddCategoryForm onAdd={handleAddCategory} />

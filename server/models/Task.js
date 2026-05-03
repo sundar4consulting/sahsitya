@@ -8,6 +8,7 @@ const taskSchema = new mongoose.Schema({
   dueDate: { type: Date, default: null },
   priority: { type: String, enum: ['Low', 'Medium', 'High', 'Urgent', ''], default: '' },
   status: { type: String, enum: ['Pending', 'In Progress', 'Done'], default: 'Pending' },
+  sortOrder: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 

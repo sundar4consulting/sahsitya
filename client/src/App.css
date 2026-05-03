@@ -713,6 +713,29 @@ body {
   background: #fee2e2;
 }
 
+/* Drag & Drop */
+.drag-handle {
+  color: #c9d1d9;
+  cursor: grab;
+  font-size: 1.1rem;
+  text-align: center;
+  user-select: none;
+  padding: 0.6rem 0.2rem !important;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.row-dragging {
+  opacity: 0.4;
+  background: #e0f4ff;
+}
+
+.row-drag-over td {
+  border-top: 2px solid #00b4d8 !important;
+}
+
 /* Notes */
 .notes-inline {
   font-size: 0.75rem;
