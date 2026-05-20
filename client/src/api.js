@@ -29,6 +29,9 @@ export const createMenuItem = (data) => api.post('/menu', data);
 export const updateMenuItem = (id, data) => api.put(`/menu/${id}`, data);
 export const deleteMenuItem = (id) => api.delete(`/menu/${id}`);
 
+// Auth
+export const login = (password) => api.post('/auth/login', { password });
+
 // Expenses
 export const getExpenses = (category) => {
   const params = category ? { category } : {};

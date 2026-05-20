@@ -5,6 +5,7 @@ import CategoryBoard from './components/CategoryBoard';
 import AddCategoryForm from './components/AddCategoryForm';
 import FoodMenu from './components/FoodMenu';
 import ExpenseTracker from './components/ExpenseTracker';
+import LoginGate from './components/LoginGate';
 import * as api from './api';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState('home');
+  const [expenseAuth, setExpenseAuth] = useState(() => !!localStorage.getItem('expense_token'));
 
   const fetchData = useCallback(async () => {
     try {
@@ -154,7 +156,11 @@ function App() {
 
       {page === 'menu' && <FoodMenu />}
 
-      {page === 'expenses' && <ExpenseTracker categories={categories} />}
+      {page === 'expenses' && (
+        expenseAuth
+          ? <ExpenseTracker categories={categories} />
+          : <LoginGate onAuthenticated={() => setExpenseAuth(true)} />
+      )}
     </div>
   );
 }
