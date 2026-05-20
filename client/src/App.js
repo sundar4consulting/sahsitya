@@ -4,6 +4,7 @@ import Header from './components/Header';
 import CategoryBoard from './components/CategoryBoard';
 import AddCategoryForm from './components/AddCategoryForm';
 import FoodMenu from './components/FoodMenu';
+import ExpenseTracker from './components/ExpenseTracker';
 import * as api from './api';
 
 function App() {
@@ -152,6 +153,8 @@ function App() {
       )}
 
       {page === 'menu' && <FoodMenu />}
+
+      {page === 'expenses' && <ExpenseTracker categories={categories} />}
     </div>
   );
 }

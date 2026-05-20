@@ -7,16 +7,21 @@ const path = require('path');
 const categoryRoutes = require('./routes/categories');
 const taskRoutes = require('./routes/tasks');
 const menuRoutes = require('./routes/menu');
+const expenseRoutes = require('./routes/expenses');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+// Serve uploaded files
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // API routes
 app.use('/api/categories', categoryRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/menu', menuRoutes);
+app.use('/api/expenses', expenseRoutes);
 
 // Serve React build in production
 app.use(express.static(path.join(__dirname, '../client/build')));

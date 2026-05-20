@@ -28,6 +28,12 @@ function Header({ completed, total, page, onNavigate }) {
         >
           🍽️ Food Menu
         </button>
+        <button
+          className={`nav-btn${page === 'expenses' ? ' active' : ''}`}
+          onClick={() => onNavigate('expenses')}
+        >
+          💰 Expenses
+        </button>
       </nav>
       <div className="header-stats">
         <div className="progress-bar-container">

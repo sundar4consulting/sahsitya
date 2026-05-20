@@ -28,3 +28,16 @@ export const getMenuItems = (mealType) => {
 export const createMenuItem = (data) => api.post('/menu', data);
 export const updateMenuItem = (id, data) => api.put(`/menu/${id}`, data);
 export const deleteMenuItem = (id) => api.delete(`/menu/${id}`);
+
+// Expenses
+export const getExpenses = (category) => {
+  const params = category ? { category } : {};
+  return api.get('/expenses', { params });
+};
+export const createExpense = (formData) => api.post('/expenses', formData, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const updateExpense = (id, formData) => api.put(`/expenses/${id}`, formData, {
+  headers: { 'Content-Type': 'multipart/form-data' }
+});
+export const deleteExpense = (id) => api.delete(`/expenses/${id}`);
