@@ -6,6 +6,7 @@ const path = require('path');
 
 const categoryRoutes = require('./routes/categories');
 const taskRoutes = require('./routes/tasks');
+const menuRoutes = require('./routes/menu');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // API routes
 app.use('/api/categories', categoryRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/menu', menuRoutes);
 
 // Serve React build in production
 app.use(express.static(path.join(__dirname, '../client/build')));

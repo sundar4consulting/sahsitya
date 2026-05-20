@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import CategoryBoard from './components/CategoryBoard';
 import AddCategoryForm from './components/AddCategoryForm';
+import FoodMenu from './components/FoodMenu';
 import * as api from './api';
 
 function App() {
@@ -149,6 +150,8 @@ function App() {
           <AddCategoryForm onAdd={handleAddCategory} />
         </div>
       )}
+
+      {page === 'menu' && <FoodMenu />}
     </div>
   );
 }

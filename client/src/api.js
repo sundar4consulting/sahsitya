@@ -19,3 +19,12 @@ export const createTask = (data) => api.post('/tasks', data);
 export const updateTask = (id, data) => api.put(`/tasks/${id}`, data);
 export const deleteTask = (id) => api.delete(`/tasks/${id}`);
 export const reorderTasks = (ids) => api.put('/tasks/reorder', { ids });
+
+// Menu Items
+export const getMenuItems = (mealType) => {
+  const params = mealType ? { mealType } : {};
+  return api.get('/menu', { params });
+};
+export const createMenuItem = (data) => api.post('/menu', data);
+export const updateMenuItem = (id, data) => api.put(`/menu/${id}`, data);
+export const deleteMenuItem = (id) => api.delete(`/menu/${id}`);
