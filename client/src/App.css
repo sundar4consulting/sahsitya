@@ -844,6 +844,37 @@ body {
   border-color: white;
 }
 
+/* Export Bar */
+.food-menu-export-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.food-export-btn {
+  background: linear-gradient(135deg, #a8001a, #c0392b);
+  color: #ffd700;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 15px rgba(168, 0, 26, 0.3);
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.food-export-btn:hover {
+  background: linear-gradient(135deg, #7a0010, #a8001a);
+  box-shadow: 0 6px 20px rgba(168, 0, 26, 0.4);
+  transform: translateY(-1px);
+}
+
+.food-export-btn:active {
+  transform: translateY(0);
+}
+
 /* Card */
 .food-menu-card {
   background: white;

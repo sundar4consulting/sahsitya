@@ -96,6 +96,56 @@ function FoodMenu() {
     setEditingId(null);
   };
 
+  const handleExportPDF = () => {
+    const selectedItems = filteredItems.filter((item) => item.selected);
+    const grouped = selectedItems.reduce((acc, item) => {
+      const g = item.group || 'Other';
+      if (!acc[g]) acc[g] = [];
+      acc[g].push(item);
+      return acc;
+    }, {});
+
+    const title = activeTab === 'Breakfast' ? 'முஹூர்த்தம் - Tiffin Menu' : 'முஹூர்த்தம் சாப்பாடு - Lunch Menu';
+
+    const rows = Object.entries(grouped).map(([group, items]) =>
+      `<tr><td colspan="2" style="background:#f8e8d0;font-weight:700;color:#a8001a;padding:8px 12px;font-size:14px;">▸ ${group}</td></tr>` +
+      items.map((item, i) =>
+        `<tr><td style="padding:6px 12px 6px 28px;border-bottom:1px solid #f0e0c8;">${i + 1}. ${item.name}</td><td style="padding:6px 12px;border-bottom:1px solid #f0e0c8;color:#555;">${item.quantity || ''}</td></tr>`
+      ).join('')
+    ).join('');
+
+    const html = `
+      <html>
+      <head>
+        <title>${title}</title>
+        <style>
+          body { font-family: 'Noto Sans Tamil', 'Catamaran', sans-serif; margin: 0; padding: 30px; background: #fff; color: #5a1a1a; }
+          .card { max-width: 700px; margin: 0 auto; border: 2px solid #c9a874; border-radius: 14px; padding: 30px 40px; background: linear-gradient(135deg, #f5e3c0 0%, #f0d9a8 50%, #ecd095 100%); }
+          .banner { background: linear-gradient(180deg, #a8001a 0%, #7a0010 100%); color: #ffd700; text-align: center; padding: 12px 40px; font-size: 22px; font-weight: 700; border-radius: 22px; width: fit-content; margin: 0 auto 20px; }
+          table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+          .footer { text-align: center; margin-top: 25px; font-size: 12px; color: #888; }
+          .count { text-align: center; font-size: 14px; margin-bottom: 10px; color: #5a1a1a; font-weight: 600; }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <div class="banner">${title}</div>
+          <div class="count">${selectedItems.length} items selected</div>
+          <table>${rows}</table>
+        </div>
+        <div class="footer">Generated on ${new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+      </body>
+      </html>
+    `;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(html);
+    printWindow.document.close();
+    printWindow.onload = () => {
+      printWindow.print();
+    };
+  };
+
   return (
     <div className="food-menu-page">
       <div className="food-menu-header">
@@ -115,6 +165,12 @@ function FoodMenu() {
           onClick={() => setActiveTab('Lunch')}
         >
           🍛 சாப்பாடு (Lunch)
+        </button>
+      </div>
+
+      <div className="food-menu-export-bar">
+        <button className="food-export-btn" onClick={handleExportPDF}>
+          📄 Export {activeTab === 'Breakfast' ? 'Tiffin' : 'Lunch'} Menu as PDF
         </button>
       </div>
 
