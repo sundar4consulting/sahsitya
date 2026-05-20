@@ -1231,18 +1231,27 @@ body {
   background: linear-gradient(135deg, #0077b6, #00b4d8);
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 0.55rem 1.25rem;
-  font-size: 0.85rem;
+  border-radius: 10px;
+  padding: 0.65rem 1.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
-  transition: opacity 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+  transition: all 0.25s ease;
   white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 .expense-add-btn:hover {
-  opacity: 0.85;
+  background: linear-gradient(135deg, #005f92, #0096c7);
+  box-shadow: 0 6px 20px rgba(0, 119, 182, 0.4);
+  transform: translateY(-1px);
+}
+
+.expense-add-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.25);
 }
 
 /* Form Card */
@@ -1324,7 +1333,59 @@ body {
 .expense-form-actions {
   display: flex;
   gap: 0.75rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
+}
+
+.expense-submit-btn {
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 119, 182, 0.35);
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+
+.expense-submit-btn:hover {
+  background: linear-gradient(135deg, #005f92, #0096c7);
+  box-shadow: 0 6px 20px rgba(0, 119, 182, 0.45);
+  transform: translateY(-1px);
+}
+
+.expense-submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.3);
+}
+
+.expense-cancel-btn {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0.7rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.expense-cancel-btn:hover {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #dc2626;
+  border-color: #fca5a5;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+  transform: translateY(-1px);
+}
+
+.expense-cancel-btn:active {
+  transform: translateY(0);
 }
 
 /* Expense List */

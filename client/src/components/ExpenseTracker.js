@@ -205,11 +205,11 @@ function ExpenseTracker({ categories }) {
             </div>
 
             <div className="expense-form-actions">
-              <button type="submit" className="btn-primary">
-                {editingId ? 'Update' : 'Add Expense'}
+              <button type="submit" className="expense-submit-btn">
+                {editingId ? '✓ Update Expense' : '💰 Add Expense'}
               </button>
-              <button type="button" className="btn-secondary" onClick={resetForm}>
-                Cancel
+              <button type="button" className="expense-cancel-btn" onClick={resetForm}>
+                ✕ Cancel
               </button>
             </div>
           </form>
