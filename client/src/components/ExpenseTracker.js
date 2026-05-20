@@ -129,16 +129,19 @@ function ExpenseTracker({ categories }) {
             <div className="expense-form-row">
               <div className="expense-form-field">
                 <label>Category</label>
-                <select
+                <input
+                  type="text"
+                  list="category-list"
                   value={form.category}
                   onChange={(e) => setForm({ ...form, category: e.target.value })}
+                  placeholder="Type or select category"
                   required
-                >
-                  <option value="">Select category</option>
+                />
+                <datalist id="category-list">
                   {categories.map((cat) => (
-                    <option key={cat._id} value={cat.name}>{cat.name}</option>
+                    <option key={cat._id} value={cat.name} />
                   ))}
-                </select>
+                </datalist>
               </div>
               <div className="expense-form-field">
                 <label>Amount (₹)</label>
