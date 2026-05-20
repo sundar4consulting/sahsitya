@@ -16,9 +16,9 @@ router.get('/', async (req, res) => {
 // Create menu item
 router.post('/', async (req, res) => {
   try {
-    const { name, mealType, quantity, notes, selected } = req.body;
+    const { name, mealType, group, quantity, notes, selected } = req.body;
     const count = await MenuItem.countDocuments({ mealType });
-    const item = new MenuItem({ name, mealType, quantity, notes, selected, sortOrder: count });
+    const item = new MenuItem({ name, mealType, group, quantity, notes, selected, sortOrder: count });
     await item.save();
     res.status(201).json(item);
   } catch (err) {

@@ -1032,6 +1032,51 @@ body {
   background: #fecaca;
 }
 
+/* Food Menu Groups */
+.food-menu-group {
+  margin-bottom: 0.5rem;
+}
+
+.food-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.5rem 0.3rem;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 0.25rem;
+}
+
+.food-group-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #a8001a;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.food-group-count {
+  font-size: 0.7rem;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+}
+
+.food-group-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.food-menu-item.always {
+  background: #fef9c3;
+  border-left: 3px solid #eab308;
+}
+
+.food-menu-item.always .food-item-name {
+  font-weight: 600;
+}
+
 /* Empty State */
 .food-menu-empty {
   text-align: center;
