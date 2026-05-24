@@ -20,6 +20,7 @@ const breakfastItems = [
   // Dosa / Poori
   { name: 'தோசை', group: 'தோசை / பூரி', selected: false },
   { name: 'மசால் தோசை', group: 'தோசை / பூரி', selected: false },
+  { name: 'பூரி', group: 'தோசை / பூரி', selected: false },
   { name: 'பூரி மசாலா', group: 'தோசை / பூரி', selected: false },
   { name: 'ஊத்தப்பம்', group: 'தோசை / பூரி', selected: false },
   // Chutney
