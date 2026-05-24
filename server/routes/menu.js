@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const MenuItem = require('../models/MenuItem');
+const MenuNote = require('../models/MenuNote');
 
 // Get all menu items (optionally filter by mealType)
 router.get('/', async (req, res) => {
@@ -50,6 +51,30 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: 'Menu item deleted' });
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// Get menu note for a meal type
+router.get('/notes/:mealType', async (req, res) => {
+  try {
+    const note = await MenuNote.findOne({ mealType: req.params.mealType });
+    res.json(note || { mealType: req.params.mealType, content: '' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Save menu note for a meal type
+router.put('/notes/:mealType', async (req, res) => {
+  try {
+    const note = await MenuNote.findOneAndUpdate(
+      { mealType: req.params.mealType },
+      { content: req.body.content, updatedAt: new Date() },
+      { new: true, upsert: true }
+    );
+    res.json(note);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
   }
 });
 

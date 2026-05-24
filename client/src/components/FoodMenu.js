@@ -8,6 +8,8 @@ function FoodMenu() {
   const [newGroup, setNewGroup] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({ name: '', quantity: '', notes: '' });
+  const [questions, setQuestions] = useState({ Breakfast: '', Lunch: '' });
+  const [saveStatus, setSaveStatus] = useState('');
 
   const fetchMenu = useCallback(async () => {
     try {
@@ -18,9 +20,22 @@ function FoodMenu() {
     }
   }, []);
 
+  const fetchNotes = useCallback(async () => {
+    try {
+      const [bRes, lRes] = await Promise.all([
+        api.getMenuNote('Breakfast'),
+        api.getMenuNote('Lunch')
+      ]);
+      setQuestions({ Breakfast: bRes.data.content || '', Lunch: lRes.data.content || '' });
+    } catch (err) {
+      console.error('Error fetching notes:', err);
+    }
+  }, []);
+
   useEffect(() => {
     fetchMenu();
-  }, [fetchMenu]);
+    fetchNotes();
+  }, [fetchMenu, fetchNotes]);
 
   const filteredItems = menuItems.filter((item) => item.mealType === activeTab);
   const selectedCount = filteredItems.filter((item) => item.selected).length;
@@ -276,6 +291,31 @@ function FoodMenu() {
           />
           <button type="submit" className="food-add-btn">+ Add</button>
         </form>
+
+        <div className="food-questions-section">
+          <label className="food-questions-label">📝 Questions / Notes</label>
+          <textarea
+            className="food-questions-textarea"
+            value={questions[activeTab]}
+            onChange={(e) => setQuestions({ ...questions, [activeTab]: e.target.value })}
+            placeholder={`Add questions or notes for ${activeTab === 'Breakfast' ? 'Tiffin' : 'Lunch'}...`}
+            rows={4}
+          />
+          <button
+            className="food-questions-save-btn"
+            onClick={async () => {
+              try {
+                await api.saveMenuNote(activeTab, questions[activeTab]);
+                setSaveStatus('Saved ✓');
+                setTimeout(() => setSaveStatus(''), 2000);
+              } catch (err) {
+                console.error('Error saving note:', err);
+              }
+            }}
+          >
+            💾 Save Notes {saveStatus && <span className="food-save-status">{saveStatus}</span>}
+          </button>
+        </div>
       </div>
     </div>
   );

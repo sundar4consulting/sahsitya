@@ -28,6 +28,8 @@ export const getMenuItems = (mealType) => {
 export const createMenuItem = (data) => api.post('/menu', data);
 export const updateMenuItem = (id, data) => api.put(`/menu/${id}`, data);
 export const deleteMenuItem = (id) => api.delete(`/menu/${id}`);
+export const getMenuNote = (mealType) => api.get(`/menu/notes/${mealType}`);
+export const saveMenuNote = (mealType, content) => api.put(`/menu/notes/${mealType}`, { content });
 
 // Auth
 export const login = (password) => api.post('/auth/login', { password });
